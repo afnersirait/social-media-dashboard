@@ -10,6 +10,8 @@ A modern, full-stack analytics dashboard for social media management with real-t
 - 🚀 **Performance Insights**: Track growth trends and audience demographics
 - ⚡ **Redis Caching**: Fast data retrieval and real-time updates
 - 🎨 **Modern UI**: Responsive design with Vue.js 3 and Tailwind CSS
+- 🌓 **Dark Mode**: Full dark/light theme support
+- ☸️ **Kubernetes Ready**: Microservices architecture with CI/CD pipeline
 
 ## Tech Stack
 
@@ -18,12 +20,36 @@ A modern, full-stack analytics dashboard for social media management with real-t
 - **Visualization**: D3.js for interactive charts
 - **State Management**: Pinia
 - **API**: RESTful API with WebSocket support
+- **DevOps**: Docker, Kubernetes, GitHub Actions
+- **Container Registry**: GitHub Container Registry (ghcr.io)
+
+## Deployment Options
+
+### 🚀 Quick Deploy to Kubernetes
+[![Deploy to Kubernetes](https://img.shields.io/badge/Deploy-Kubernetes-326CE5?logo=kubernetes)](QUICKSTART_K8S.md)
+
+See [Kubernetes Quick Start Guide](QUICKSTART_K8S.md) for 5-minute deployment.
+
+### 🐳 Docker Compose (Local Development)
+
+```bash
+docker-compose up -d
+# Access at http://localhost:8080
+```
+
+### 💻 Local Development
 
 ## Prerequisites
 
+**For Local Development:**
 - Node.js 18+ and npm/yarn
 - Python 3.9+
 - Redis server
+
+**For Kubernetes Deployment:**
+- Kubernetes cluster (EKS, GKE, AKS, or local)
+- kubectl configured
+- GitHub account
 
 ## Installation
 
@@ -183,6 +209,46 @@ npm run lint
 
 # Build for production
 npm run build
+```
+
+## Kubernetes & CI/CD
+
+### Architecture
+
+The application follows microservices principles with three main services:
+- **Frontend Service**: Vue.js SPA (Nginx)
+- **Backend Service**: FastAPI Python application
+- **Redis Service**: Caching layer
+
+### CI/CD Pipeline
+
+GitHub Actions automatically:
+1. Builds Docker images for frontend and backend
+2. Pushes to GitHub Container Registry
+3. Scans for security vulnerabilities
+4. Deploys to Kubernetes (staging/production)
+
+### Documentation
+
+- 📘 [Kubernetes Deployment Guide](KUBERNETES_DEPLOYMENT.md) - Complete K8s setup
+- 🚀 [Quick Start Guide](QUICKSTART_K8S.md) - Deploy in 5 minutes
+- 🔄 [CI/CD Guide](CI_CD_GUIDE.md) - Pipeline documentation
+- 🐳 [Docker Compose](docker-compose.yml) - Local testing
+
+### Quick Commands
+
+```bash
+# Deploy to Kubernetes
+kubectl apply -f k8s/ -n production
+
+# Scale services
+kubectl scale deployment backend --replicas=5 -n production
+
+# View logs
+kubectl logs -f deployment/backend -n production
+
+# Rollback deployment
+kubectl rollout undo deployment/backend -n production
 ```
 
 ## License
