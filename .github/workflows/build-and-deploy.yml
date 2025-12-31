@@ -1,13 +1,8 @@
 name: Build and Deploy to Kubernetes
 
 on:
-  push:
-    branches:
-      - main
-      - develop
-  pull_request:
-    branches:
-      - main
+  release:
+    types: [published, created]
   workflow_dispatch:
 
 env:
@@ -113,7 +108,7 @@ jobs:
     name: Deploy to Kubernetes
     runs-on: ubuntu-latest
     needs: [build-backend, build-frontend]
-    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/develop'
+    if: github.event_name == 'release'
     
     steps:
       - name: Checkout code
@@ -133,12 +128,14 @@ jobs:
       - name: Set environment
         id: env
         run: |
-          if [[ "${{ github.ref }}" == "refs/heads/main" ]]; then
+          if [[ "${{ github.event.release.prerelease }}" == "false" ]]; then
             echo "namespace=production" >> $GITHUB_OUTPUT
             echo "environment=production" >> $GITHUB_OUTPUT
+            echo "release_version=${{ github.event.release.tag_name }}" >> $GITHUB_OUTPUT
           else
             echo "namespace=staging" >> $GITHUB_OUTPUT
             echo "environment=staging" >> $GITHUB_OUTPUT
+            echo "release_version=${{ github.event.release.tag_name }}" >> $GITHUB_OUTPUT
           fi
 
       - name: Create namespace if not exists
@@ -163,7 +160,7 @@ jobs:
           envsubst < k8s/backend/deployment.yaml | kubectl apply -f - -n ${{ steps.env.outputs.namespace }}
           kubectl apply -f k8s/backend/service.yaml -n ${{ steps.env.outputs.namespace }}
         env:
-          IMAGE_TAG: ${{ github.sha }}
+          IMAGE_TAG: ${{ steps.env.outputs.release_version }}
           NAMESPACE: ${{ steps.env.outputs.namespace }}
 
       - name: Deploy Frontend
@@ -171,7 +168,7 @@ jobs:
           envsubst < k8s/frontend/deployment.yaml | kubectl apply -f - -n ${{ steps.env.outputs.namespace }}
           kubectl apply -f k8s/frontend/service.yaml -n ${{ steps.env.outputs.namespace }}
         env:
-          IMAGE_TAG: ${{ github.sha }}
+          IMAGE_TAG: ${{ steps.env.outputs.release_version }}
           NAMESPACE: ${{ steps.env.outputs.namespace }}
 
       - name: Deploy Ingress
