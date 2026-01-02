@@ -13,22 +13,6 @@
 
 ---
 
-## 📑 Table of Contents
-
-- [Overview](#-overview)
-- [Key Features](#-key-features)
-- [Tech Stack](#tech-stack)
-- [Quick Start](#-quick-start)
-- [Architecture](#️-architecture)
-- [API Documentation](#api-documentation)
-- [Environment Variables](#environment-variables)
-- [Kubernetes & CI/CD](#kubernetes--cicd)
-- [Development](#development)
-- [About the Developer](#about-the-developer)
-- [Project Highlights](#project-highlights)
-
----
-
 ## 🎯 Overview
 
 A production-ready, enterprise-grade analytics dashboard for social media management featuring real-time data visualization, intelligent post scheduling, and comprehensive engagement tracking. 
@@ -378,10 +362,6 @@ kubectl logs -f deployment/backend -n production
 kubectl rollout undo deployment/backend -n production
 ```
 
-## About the Developer
-
-**Afner Sirait** - Full-Stack Developer specializing in modern web applications, cloud-native architectures, and DevOps practices.
-
 ### Technical Expertise
 - **Frontend**: Vue.js, React, TypeScript, Tailwind CSS
 - **Backend**: Python (FastAPI, Django), Node.js
@@ -394,18 +374,3 @@ kubectl rollout undo deployment/backend -n production
 - 💼 LinkedIn: [Afner Sirait](https://linkedin.com/in/afnersirait)
 - 📧 Email: afner.sirait@example.com
 
-## Project Highlights
-
-This project demonstrates:
-- ✅ **Microservices Architecture** - Scalable and maintainable design
-- ✅ **Cloud-Native Development** - Kubernetes-ready with container orchestration
-- ✅ **Modern Frontend** - Vue.js 3 with Composition API and dark mode
-- ✅ **Robust Backend** - FastAPI with Redis caching and SQLAlchemy ORM
-- ✅ **DevOps Best Practices** - Automated CI/CD, security scanning, and monitoring
-- ✅ **Production-Ready** - Health checks, auto-scaling, and rollback strategies
-
-## Contributing
-
-While this is a personal project by Afner Sirait, suggestions and feedback are welcome! Feel free to open an issue or reach out directly.
-
----
