@@ -9,8 +9,6 @@
 ![Kubernetes](https://img.shields.io/badge/Kubernetes-Ready-326CE5?logo=kubernetes&logoColor=white)
 ![GitHub Actions](https://img.shields.io/badge/CI/CD-Automated-2088FF?logo=github-actions&logoColor=white)
 
-**Built by [Afner Sirait](https://github.com/afnersirait)** | Full-Stack Developer
-
 </div>
 
 ---
