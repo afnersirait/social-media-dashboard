@@ -409,5 +409,3 @@ This project demonstrates:
 While this is a personal project by Afner Sirait, suggestions and feedback are welcome! Feel free to open an issue or reach out directly.
 
 ---
-
-**© 2025 Afner Sirait. All rights reserved.**
